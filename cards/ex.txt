@@ -1,0 +1,7 @@
+a
+type a
+a
+
+b
+type b
+b

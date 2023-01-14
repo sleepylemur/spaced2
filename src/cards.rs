@@ -2,6 +2,7 @@ use std::{
     fs::File,
     io::{BufRead, BufReader, Error},
     iter::Peekable,
+    time::{SystemTime, UNIX_EPOCH},
 };
 
 #[derive(Debug)]
@@ -14,6 +15,7 @@ pub struct Card {
     pub last_num: u32,
     pub last_ts: u64,
     pub expected_retention_days: u16,
+    pub active: bool,
 }
 
 fn skip_blank<I>(lines: &mut Peekable<I>)
@@ -47,9 +49,31 @@ impl Card {
                 last_num: 0,
                 last_ts: 0,
                 expected_retention_days: 0,
+                active: false,
             });
             skip_blank(&mut lines);
         }
         Ok(cards)
+    }
+
+    pub fn update(&mut self, ts: u64, correct: bool, followed: &Option<String>, history_num: u32) {
+        if correct {
+            self.num_correct += 1;
+            if self.num_correct >= 3 {
+                if self.expected_retention_days == 0 {
+                    self.expected_retention_days = 1;
+                } else {
+                    self.expected_retention_days *= 2;
+                }
+            }
+        } else {
+            self.num_correct = 0;
+            self.expected_retention_days /= 2;
+        }
+
+        self.last_num = history_num;
+        self.last_ts = ts;
+        self.last_followed = followed.as_deref().map(|tag| String::from(tag));
+        self.active = true;
     }
 }

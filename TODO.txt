@@ -1,6 +1,3 @@
-add concept of "active" cards. consider it the set of cards seen in history
-- when there are 0 cards left for review, provide option to add batch of cards
-- these cards are set to active but don't live in history yet until review has gone through them
 move history into own folder
 history filename should match the card file
 allow card filename to be passed as command line args

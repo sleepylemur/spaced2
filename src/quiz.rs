@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     io::{Stdin, Stdout},
+    time::{SystemTime, UNIX_EPOCH},
 };
 
 use anyhow::Error;
@@ -10,12 +11,20 @@ use crossterm::{
 };
 
 use crate::{
-    activate_cards,
     card_selection::{get_possible, random_card},
-    cards::{self, Card},
-    current_timestamp,
+    cards::{self, activate_cards, Card},
     history::History,
 };
+
+fn current_timestamp() -> Result<u64, Error> {
+    u64::try_from(
+        SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_millis(),
+    )
+    .map_err(anyhow::Error::msg)
+}
 
 pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Error> {
     println!("{}", filename);

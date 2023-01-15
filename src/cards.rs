@@ -1,4 +1,5 @@
 use std::{
+    collections::HashMap,
     fs::File,
     io::{BufRead, BufReader, Error},
     iter::Peekable,
@@ -74,5 +75,18 @@ impl Card {
         self.last_ts = ts;
         self.last_followed = followed.as_deref().map(|tag| String::from(tag));
         self.active = true;
+    }
+}
+
+pub fn activate_cards(cards: &mut HashMap<String, Card>, num: u8) {
+    let mut activated = 0;
+    for (_, card) in cards.iter_mut() {
+        if !card.active {
+            card.active = true;
+            activated += 1;
+            if activated >= num {
+                break;
+            }
+        }
     }
 }

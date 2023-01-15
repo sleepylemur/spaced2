@@ -20,6 +20,12 @@ Quiz a specific deck
 cargo run deckname
 ```
 
+Build
+
+```
+cargo build
+```
+
 ### Shell alias
 
 Replace `app` path with path to spaced2 executable
@@ -28,7 +34,7 @@ Replace `app` path with path to spaced2 executable
 sp () {
   local app
   app='/Users/sleepylemur/rust/spaced2/target/debug/spaced2'
-  "$app" "$("$app" | fzf | awk '{print $1}')"
+  "$app" "$("$app" | fzf -n 1 | awk '{print $1}')"
 }
 ```
 

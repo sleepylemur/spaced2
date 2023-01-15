@@ -1,0 +1,187 @@
+star
+Match preceding character 0 or more times
+*
+
+plus
+Match preceding character 1 or more times
++
+
+dot
+Match any single character
+.
+
+either
+Match either 'x' or 'y'
+x|y
+
+escape
+Escape a special character
+\
+
+char
+The character b
+b
+
+string
+The string abc
+abc
+
+digit
+Match a digit character
+\d
+
+nondigit
+Match a non-digit character
+\D
+
+space
+Match a single white space character (space, tab, form feed, or line feed)
+\s
+
+nonspace
+Match a single character other than white space
+\S
+
+alphanum
+Match any alphanumeric character (including underscore)
+\w
+
+non-word
+Match any non-word character
+\W
+
+set
+Match any one of the characters in the set 'abc'
+[abc]
+
+notset
+Match anything not in character set 'abc'
+[^abc]
+
+backspace
+Match a backspace
+[\b]
+
+beginning
+Match beginning of input
+^
+
+end
+Match end of input
+$
+
+word boundary
+Match a word boundary
+\b
+
+non-word boundary
+Match a non-word boundary
+\B
+
+lookahead
+Lookahead
+?=
+
+negative lookahead
+Negative lookahead
+?!
+
+lookbehind
+Lookbehind
+?<=
+
+negative lookbehind
+Negative lookbehind
+?<!
+
+once-only
+Once-only subexpression
+?>
+
+if
+If then condition
+?()
+
+if else
+If then else condition
+?()|
+
+comment
+Comment
+?#
+
+exactly n
+Match exactly n occurrences of preceding character
+{n}
+
+n to m
+Match at least n and at most m occurrences of the preceding character
+{n,m}
+
+0 or 1
+Match 0 or 1
+?
+
+control char
+Match control character X in a string
+\cX
+
+line feed
+Match a line feed
+\n
+
+return
+Match a carriage return
+\r
+
+tab
+Match a tab
+\t
+
+null
+Match a NULL
+\0
+
+form feed
+Match a form feed
+\f
+
+vert tab
+Match a vertical tab
+\v
+
+charcode2
+Match character with code hh (2 hex digits)
+\xhh
+
+charcode4
+Match character with code hhhh (4 hex digits)
+\uhhhh
+
+global
+Global search
+g
+
+case-insensitive
+Case-insensitive search
+i
+
+multi-line
+Multi-line search
+m
+
+sticky
+"sticky" search match starting at current position in target string
+y
+
+capture
+Match 'x' and remember the match
+(x)
+
+non-capture
+Match 'x' but do not remember the match
+(?:x)
+
+backref
+A back reference to the last substring matching the n parenthetical in the regex
+\n

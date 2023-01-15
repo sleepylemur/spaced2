@@ -1,5 +1,1 @@
-consider using fzf instead of implementing deck picker
-allow card filename to be passed as command line args
-add card directory browser that shows which card files exist and how many cards need studying for each
-allow card to repeat if it's the only card remaining
-immediately repeat the last card on wrong answer
+immediately repeat the last card on wrong answer. show correct response then clear on return.

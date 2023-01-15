@@ -39,6 +39,7 @@ pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Er
 
     let mut answer = String::new();
     let mut last_tag: Option<String> = None;
+    let mut last_correct = None;
     execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
     loop {
         let (possible, inactive_count, to_review_count) = get_possible(&mut cards, &last_tag);
@@ -60,7 +61,11 @@ pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Er
                 }
             }
         } else if let Some(card) = random_card(&possible, &mut cards) {
-            println!("last tag {:?}", last_tag);
+            match last_correct {
+                Some(true) => println!("correct"),
+                Some(false) => println!("wrong"),
+                None => (),
+            }
             println!(
                 "reviewing {}, unlearned {}",
                 to_review_count, inactive_count
@@ -83,12 +88,11 @@ pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Er
             history.persist_update(card, is_correct)?;
 
             last_tag = Some(card.tag.clone());
+            last_correct = Some(is_correct);
         } else {
             break;
         }
         answer.truncate(0);
-        println!("{:?}", cards);
-        // thread::sleep(time::Duration::from_millis(1000));
         execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
     }
     Ok(())

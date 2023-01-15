@@ -43,7 +43,7 @@ fn main() -> Result<(), Error> {
     let stdin = io::stdin();
     execute!(stdout, EnterAlternateScreen)?;
 
-    quiz::quiz("cards/ex", &mut stdout, &stdin)?;
+    quiz::quiz("ex", &mut stdout, &stdin)?;
 
     execute!(stdout, LeaveAlternateScreen)?;
     Ok(())

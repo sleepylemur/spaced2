@@ -20,12 +20,12 @@ use crate::{
 pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Error> {
     println!("{}", filename);
 
-    let mut cards: HashMap<String, Card> = cards::Card::from_file("cards/ex")?
+    let mut cards: HashMap<String, Card> = cards::Card::from_file(&format!("cards/{}", filename))?
         .into_iter()
         .map(|card| (card.tag.clone(), card))
         .collect();
 
-    let mut history = History::open("history")?;
+    let mut history = History::open(&format!("history/{}", filename))?;
     history.parse(&mut cards)?;
 
     let mut answer = String::new();

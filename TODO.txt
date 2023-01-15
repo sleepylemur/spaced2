@@ -1,5 +1,4 @@
-move history into own folder
-history filename should match the card file
+consider using fzf instead of implementing deck picker
 allow card filename to be passed as command line args
 add card directory browser that shows which card files exist and how many cards need studying for each
 allow card to repeat if it's the only card remaining

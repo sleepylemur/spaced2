@@ -1,1 +1,1 @@
-immediately repeat the last card on wrong answer. show correct response then clear on return.
+rework requiz on mistake. code is a bit of a mess

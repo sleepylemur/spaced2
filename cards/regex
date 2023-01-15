@@ -46,7 +46,7 @@ alphanum
 Match any alphanumeric character (including underscore)
 \w
 
-non-word
+non_word
 Match any non-word character
 \W
 
@@ -70,11 +70,11 @@ end
 Match end of input
 $
 
-word boundary
+word_boundary
 Match a word boundary
 \b
 
-non-word boundary
+non_word_boundary
 Match a non-word boundary
 \B
 
@@ -82,7 +82,7 @@ lookahead
 Lookahead
 ?=
 
-negative lookahead
+negative_lookahead
 Negative lookahead
 ?!
 
@@ -90,11 +90,11 @@ lookbehind
 Lookbehind
 ?<=
 
-negative lookbehind
+negative_lookbehind
 Negative lookbehind
 ?<!
 
-once-only
+once_only
 Once-only subexpression
 ?>
 
@@ -102,7 +102,7 @@ if
 If then condition
 ?()
 
-if else
+if_else
 If then else condition
 ?()|
 
@@ -110,23 +110,23 @@ comment
 Comment
 ?#
 
-exactly n
+exactly_n
 Match exactly n occurrences of preceding character
 {n}
 
-n to m
+n_to_m
 Match at least n and at most m occurrences of the preceding character
 {n,m}
 
-0 or 1
+0_or_1
 Match 0 or 1
 ?
 
-control char
+control_char
 Match control character X in a string
 \cX
 
-line feed
+line_feed
 Match a line feed
 \n
 
@@ -142,11 +142,11 @@ null
 Match a NULL
 \0
 
-form feed
+form_feed
 Match a form feed
 \f
 
-vert tab
+vert_tab
 Match a vertical tab
 \v
 
@@ -162,11 +162,11 @@ global
 Global search
 g
 
-case-insensitive
+case_insensitive
 Case-insensitive search
 i
 
-multi-line
+multi_line
 Multi-line search
 m
 
@@ -178,7 +178,7 @@ capture
 Match 'x' and remember the match
 (x)
 
-non-capture
+non_capture
 Match 'x' but do not remember the match
 (?:x)
 

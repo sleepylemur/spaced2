@@ -5,14 +5,14 @@ use std::{
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
-use anyhow::Error;
+use anyhow::{anyhow, Error};
 use crossterm::{
     cursor, execute,
     terminal::{Clear, ClearType},
 };
 
 use crate::{
-    card_selection::{get_possible, random_card},
+    card_selection::{get_possible, random_card, random_tag},
     cards::{self, activate_cards, Card},
     history::History,
 };
@@ -27,9 +27,108 @@ fn current_timestamp() -> Result<u64, Error> {
     .map_err(anyhow::Error::msg)
 }
 
-pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Error> {
-    println!("{}", filename);
+fn clear_and_print_title(
+    stdout: &mut Stdout,
+    total: usize,
+    inactive: usize,
+    to_review: usize,
+) -> Result<(), Error> {
+    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+    println!(
+        "total: {} reviewing: {} unlearned: {}\n",
+        total, to_review, inactive
+    );
+    Ok(())
+}
 
+fn add_cards(
+    stdin: &Stdin,
+    cards: &mut HashMap<String, Card>,
+    has_unlearned: bool,
+) -> Result<QuizState, Error> {
+    let mut answer = String::new();
+    if has_unlearned {
+        println!("-- a to add. Anything else to exit --");
+        stdin.read_line(&mut answer)?;
+        if answer.trim() == "a" {
+            activate_cards(cards, 5);
+            Ok(QuizState::First)
+        } else {
+            Ok(QuizState::Quit)
+        }
+    } else {
+        println!("-- enter anything to exit --");
+        stdin.read_line(&mut answer)?;
+        Ok(QuizState::Quit)
+    }
+}
+
+fn ask_question(
+    stdin: &Stdin,
+    cards: &mut HashMap<String, Card>,
+    current_tag: &Option<String>,
+    last_correct: bool,
+    last_tag: &Option<String>,
+    history: &mut History,
+) -> Result<QuizState, Error> {
+    match cards.get_mut(current_tag.as_ref().unwrap()) {
+        None => Err(anyhow!("empty card passed to ask_question")),
+        Some(card) => {
+            if last_correct {
+                println!("correct");
+            }
+            println!("{}", card.question);
+            let mut answer = String::new();
+            stdin.read_line(&mut answer)?;
+            if answer.len() == 0 {
+                Ok(QuizState::Quit)
+            } else if answer.trim() == card.answer {
+                card.update(current_timestamp()?, true, &last_tag, history.num);
+                history.persist_update(card, true)?;
+                Ok(QuizState::Correct)
+            } else {
+                card.update(current_timestamp()?, false, &last_tag, history.num);
+                history.persist_update(card, false)?;
+                Ok(QuizState::ReviewWrongAnswer)
+            }
+        }
+    }
+}
+
+fn review_wrong_answer(
+    stdin: &Stdin,
+    cards: &HashMap<String, Card>,
+    current_tag: &Option<String>,
+) -> Result<QuizState, Error> {
+    match cards.get(current_tag.as_ref().unwrap()) {
+        None => Err(anyhow!("empty card passed to review_mistake")),
+        Some(card) => {
+            println!(
+                "wrong\n{}\n{}\n-- enter anything to continue --",
+                card.question, card.answer
+            );
+            let mut answer = String::new();
+            stdin.read_line(&mut answer)?;
+            if answer.len() == 0 {
+                Ok(QuizState::Quit)
+            } else {
+                Ok(QuizState::RetryWrongAnswer)
+            }
+        }
+    }
+}
+
+#[derive(PartialEq)]
+enum QuizState {
+    Quit,
+    Empty,
+    First,
+    Correct,
+    ReviewWrongAnswer,
+    RetryWrongAnswer,
+}
+
+pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Error> {
     let mut cards: HashMap<String, Card> = cards::Card::from_file(&format!("cards/{}", filename))?
         .into_iter()
         .map(|card| (card.tag.clone(), card))
@@ -38,76 +137,54 @@ pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Er
     let mut history = History::open(&format!("history/{}", filename))?;
     history.parse(&mut cards)?;
 
-    let mut answer = String::new();
+    let mut state = QuizState::First;
     let mut last_tag: Option<String> = None;
-    let mut is_correct = true;
-    let mut quitting = false;
-    execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
-    while !quitting {
+    let mut current_tag = None;
+    let num_cards = cards.len();
+
+    while QuizState::Quit != state {
         let (possible, inactive_count, to_review_count) = get_possible(&mut cards, &last_tag);
         if to_review_count == 0 {
-            if inactive_count == 0 {
-                println!("All cards reviewed.\npress anything to exit");
-                stdin.read_line(&mut answer)?;
-                break;
-            } else {
-                println!(
-                    "All cards reviewed, {} unlearned.\na to add. anything else to quit.",
-                    inactive_count
-                );
-                answer.truncate(0);
-                stdin.read_line(&mut answer)?;
-                if answer.trim() == "a" {
-                    activate_cards(&mut cards, 5);
-                } else {
-                    break;
-                }
-            }
-        } else if let Some(card) = random_card(&possible, &mut cards) {
-            loop {
-                if !is_correct {
-                    println!(
-                        "wrong\n{}\n{}\npress enter to continue",
-                        card.question, card.answer
-                    );
-                    stdin.read_line(&mut answer)?;
-                    if answer.len() == 0 {
-                        quitting = true;
-                        break;
-                    }
-                    is_correct = true; // skip to re-asking question
-                } else {
-                    println!(
-                        "reviewing {}, unlearned {}",
-                        to_review_count, inactive_count
-                    );
-                    println!("{}", card.question);
-                    stdin.read_line(&mut answer)?;
-                    if answer.len() == 0 {
-                        quitting = true;
-                        break;
-                    }
+            state = QuizState::Empty
+        }
 
-                    is_correct = if answer.trim() == card.answer {
-                        true
-                    } else {
-                        false
-                    };
-                    card.update(current_timestamp()?, is_correct, &last_tag, history.num);
-                    history.persist_update(card, is_correct)?;
-                    if is_correct {
-                        answer.truncate(0);
-                        execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
-                        break;
-                    }
-                }
-                answer.truncate(0);
-                execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+        clear_and_print_title(stdout, num_cards, inactive_count, to_review_count)?;
+
+        state = match state {
+            QuizState::Quit => break,
+            QuizState::Empty => add_cards(stdin, &mut cards, inactive_count > 0)?,
+            QuizState::First => {
+                current_tag = random_tag(&possible);
+                ask_question(
+                    stdin,
+                    &mut cards,
+                    &current_tag,
+                    false,
+                    &last_tag,
+                    &mut history,
+                )?
             }
-            println!("correct!");
-            last_tag = Some(card.tag.clone());
-        } else {
-            break;
+            QuizState::Correct => {
+                last_tag = current_tag;
+                current_tag = random_tag(&possible);
+                ask_question(
+                    stdin,
+                    &mut cards,
+                    &current_tag,
+                    true,
+                    &last_tag,
+                    &mut history,
+                )?
+            }
+            QuizState::ReviewWrongAnswer => review_wrong_answer(stdin, &cards, &current_tag)?,
+            QuizState::RetryWrongAnswer => ask_question(
+                stdin,
+                &mut cards,
+                &current_tag,
+                false,
+                &last_tag,
+                &mut history,
+            )?,
         }
     }
     Ok(())

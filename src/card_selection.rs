@@ -60,6 +60,15 @@ pub fn get_possible<'a>(
     )
 }
 
+pub fn random_tag(possible: &Vec<String>) -> Option<String> {
+    if possible.is_empty() {
+        None
+    } else {
+        let i = rand::thread_rng().gen_range(0..possible.len());
+        Some(possible[i].clone())
+    }
+}
+
 pub fn random_card<'a>(
     possible: &Vec<String>,
     cards: &'a mut HashMap<String, Card>,

@@ -1,4 +1,3 @@
-use rand::Rng;
 use std::{
     collections::HashMap,
     ops::Deref,
@@ -58,25 +57,4 @@ pub fn get_possible<'a>(
         inactive,
         to_review_count,
     )
-}
-
-pub fn random_tag(possible: &Vec<String>) -> Option<String> {
-    if possible.is_empty() {
-        None
-    } else {
-        let i = rand::thread_rng().gen_range(0..possible.len());
-        Some(possible[i].clone())
-    }
-}
-
-pub fn random_card<'a>(
-    possible: &Vec<String>,
-    cards: &'a mut HashMap<String, Card>,
-) -> Option<&'a mut Card> {
-    if possible.len() == 0 {
-        None
-    } else {
-        let i = rand::thread_rng().gen_range(0..possible.len());
-        cards.get_mut(&possible[i])
-    }
 }

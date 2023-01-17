@@ -10,6 +10,7 @@ use std::{collections::HashMap, env, fs, io};
 
 mod card_selection;
 mod cards;
+mod deck;
 mod history;
 mod quiz;
 

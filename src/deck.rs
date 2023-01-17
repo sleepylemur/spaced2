@@ -1,5 +1,6 @@
 use std::{
     collections::HashMap,
+    mem,
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
@@ -115,8 +116,7 @@ impl Deck {
             self.last_tag = None;
         } else {
             let i = rand::thread_rng().gen_range(0..self.possible.len());
-            self.last_tag = self.current_tag.clone();
-            self.current_tag = Some(self.possible[i].clone())
+            self.last_tag = mem::replace(&mut self.current_tag, Some(self.possible[i].clone()));
         }
     }
 

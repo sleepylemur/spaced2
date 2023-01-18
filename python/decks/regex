@@ -1,0 +1,20 @@
+id: 1
+question: Match preceding character 1 or more times
+answer: +
+
+id: 2
+question: Match preceding character 0 or more times
+answer: *
+
+id: 3
+question: Match any non-word character
+answer: \W
+
+id: 4
+question: Match beginning of input
+answer: ^
+
+id: 5
+question: Match end of input
+answer: $
+

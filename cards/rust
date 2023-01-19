@@ -1,0 +1,151 @@
+optionval
+option with value 5
+Some(5)
+
+optionnone
+option without value
+None
+
+optionissome
+Some => true, None => false
+is_some()
+
+optionisnone
+Some => false, None => true
+is_none()
+
+optionref
+&Option<T> to Option<&T>
+as_ref()
+
+optionasmut
+&mut Option<T> to Option<&mut T>
+as_mut()
+
+optionexpect
+Some(x) => x, None => panic with "msg"
+expect("msg")
+
+optionunwrapor
+Some(x) => x, None => y
+unwrap_or(y)
+
+optionunwraporelse
+Some(x) => x, None => () => 1
+unwrap_or_else(|| 1)
+
+optionunwrapunchecked
+Some(x) => x, None => undefined behavior
+unwrap_unchecked()
+
+optionmap
+Some(x) => Some(2*x)
+map(|x| 2*x)
+
+optionmapor
+Some(x) => Some(2*x), None => 5
+map_or(5, |x| 2*x)
+
+optionmaporelse
+Some(x) => Some(2*x), None => () => 1
+map_or_else(|| 1, |x| 2*x)
+
+optionokor
+Some(x) => Ok(x), None => Err(y)
+ok_or(y)
+
+optionokorelse
+Some(x) => Ok(x), None => Err(() => 1)
+ok_or_else(|| 1)
+
+optionasderef1
+Option<T> => Option<&T::Target>
+as_deref()
+
+optionasderef2
+&Option<T> => Option<&T::Target>
+as_deref()
+
+optionasderefmut1
+Option<T> => Option<&mut T::Target>
+as_deref_mut()
+
+optionasderefmut2
+&mut Option<T> => Option<&mut T::Target>
+as_deref_mut()
+
+optioniter
+option iterator of refs
+iter()
+
+optionitermut
+option iterator of mut ref
+iter_mut()
+
+optionand
+Some(x), optb => optb; None, Some(y) => None
+and(optb)
+
+optionandthen
+Some(x) => Some(y), None => None where f = (x) => Some(y) or None
+and_then(f)
+
+optionfilter
+Some(x) => Some(x) if f(x) else None, None => None
+filter(f)
+
+optionor
+Some(x), optb => Some(x); None, optb => optb
+or(optb)
+
+optionorelse
+Some(x), f => Some(x); None, f => f() where f = () => Some(y) or None
+or_else(f)
+
+optionxor
+returns Some if exactly one of self, optb is Some, otherwise returns None
+xor(optb)
+
+optioninsert
+replace value in option with y and returns &mut y
+insert(y)
+
+optiongetorinsert
+insert value in option with y if option is Some and returns &mut y
+get_or_insert(y)
+
+optiongetorinsertwith
+insert a value computed from f into the option if it is None, then return a mutable reference to the contained value
+get_or_insert_with(f)
+
+optiontake
+get the value out of the option, leaving a None in its place
+take()
+
+optionreplace
+replaces the actual value in the option with Some(y), returning the old value if present
+replace(y)
+
+optionzip
+opta, optb => Some((a, b)) if opta and optb are Some else None
+zip(optb)
+
+optionunzip
+Some((a, b)) => (Some(a), Some(b)), None => (None, None)
+unzip()
+
+optioncopied
+maps an Option<&T> or Option<&mut T> to an Option<T> by copying the contents of the option
+copied()
+
+optioncloned
+maps an Option<&T> or Option<&mut T> to an Option<T> by cloning the contents of the option
+cloned()
+
+optiontranspose
+change Option of a Result into a Result of an Option
+transpose()
+
+optionflatten
+Option<Option<T>> => Option<T>
+flatten()

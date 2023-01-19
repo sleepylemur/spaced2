@@ -1,1 +1,2 @@
+make adding cards add them in order
 support arrow keys while editing

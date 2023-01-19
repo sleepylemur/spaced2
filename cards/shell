@@ -1,0 +1,7 @@
+find1
+find all .rs files in current directory
+find . -name '*.rs'
+
+finddir
+find all directories in current directory
+find . -type d

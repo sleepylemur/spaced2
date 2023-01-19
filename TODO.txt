@@ -1,1 +1,1 @@
-rework requiz on mistake. code is a bit of a mess
+support arrow keys while editing

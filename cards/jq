@@ -36,7 +36,7 @@ jq '.[] | select(.a == 2)'
 
 jq_select_or
 rows where a > 2 or a < 1: [{"a": 0}, {"a": 1}, {"a": 3}] => {"a": 0}, {"a": 3}
-jq '.[] | select(.a > 2 or .a < 1)
+jq '.[] | select(.a > 2 or .a < 1)'
 
 jq_unique_values_literal
 unique values of a (comprehension) [{"a": 0}, {"a": 0}, {"a": 3}] => [0, 3]

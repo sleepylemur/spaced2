@@ -111,11 +111,11 @@ replace value in option with y and returns &mut y
 insert(y)
 
 optiongetorinsert
-insert value in option with y if option is Some and returns &mut y
+insert y into option if option is None. returns &mut y
 get_or_insert(y)
 
 optiongetorinsertwith
-insert a value computed from f into the option if it is None, then return a mutable reference to the contained value
+insert a value computed from f into the option if option is None, then return a mutable reference to the contained value
 get_or_insert_with(f)
 
 optiontake

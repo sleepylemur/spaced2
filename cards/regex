@@ -138,17 +138,9 @@ Match 0 or 1 (greedy)
 Match 0 or 1 (lazy)
 ??
 
-control_char
-Match control character X in a string
-\cX
-
 line_feed
 Match a line feed
 \n
-
-return
-Match a carriage return
-\r
 
 tab
 Match a tab
@@ -157,22 +149,6 @@ Match a tab
 null
 Match a NULL
 \0
-
-form_feed
-Match a form feed
-\f
-
-vert_tab
-Match a vertical tab
-\v
-
-charcode2
-Match character with code hh (2 hex digits)
-\xhh
-
-charcode4
-Match character with code hhhh (4 hex digits)
-\uhhhh
 
 global
 Global search

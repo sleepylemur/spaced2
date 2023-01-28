@@ -40,7 +40,7 @@ impl History {
 
                     match cards.get_mut(tag) {
                         Some(card) => card.update(timestamp, correct, &last_tag, history_num),
-                        None => return Err(anyhow!("Couldn't find card {}", tag)),
+                        None => continue,
                     };
 
                     last_tag = Some(String::from(tag));

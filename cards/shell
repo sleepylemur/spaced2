@@ -61,3 +61,23 @@ set -x
 bashpipefail
 bash: use the return value of the last errored command in a pipe
 set -o pipefail
+
+cutrange
+cut only show 'bcd' from 'abcde'
+cut -c 2-4
+
+cutcomplement
+cut show everything but 'bcd' from 'abcde'
+cut --complement -c 2-4
+
+cutfield
+cut show field 2 and 5 separated by -
+cut -d '-' -f 2,5
+
+cutnul
+cut use nulls instead of newlines
+cut -z
+
+cutsep
+cut replace - delimiter with _ and return first 3 fields
+cut -d '-' --output-delimiter '_' -f '1-3'

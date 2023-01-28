@@ -1,10 +1,18 @@
 star
-Match preceding character 0 or more times
+Match preceding character 0 or more times (greedy)
 *
 
+starlazy
+Match preceding character 0 or more times (lazy)
+*?
+
 plus
-Match preceding character 1 or more times
+Match preceding character 1 or more times (greedy)
 +
+
+pluslazy
+Match preceding character 1 or more times (lazy)
++?
 
 dot
 Match any single character
@@ -115,12 +123,20 @@ Match exactly n occurrences of preceding character
 {n}
 
 n_to_m
-Match at least n and at most m occurrences of the preceding character
+Match at least n and at most m occurrences of the preceding character (greedy)
 {n,m}
 
+n_to_mlazy
+Match at least n and at most m occurrences of the preceding character (lazy)
+{n,m}?
+
 0_or_1
-Match 0 or 1
+Match 0 or 1 (greedy)
 ?
+
+0_or_1lazy
+Match 0 or 1 (lazy)
+??
 
 control_char
 Match control character X in a string

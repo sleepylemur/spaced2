@@ -5,3 +5,59 @@ find . -name '*.rs'
 finddir
 find all directories in current directory
 find . -type d
+
+grepexclude
+grep for rows that don't include 'a'
+grep -v 'a'
+
+printfnewline
+printf input with newline
+printf '%s\n'
+
+xargsnulls
+xargs use null separator
+xargs -0
+
+xargsnumberofargs
+xargs use one param per input
+xargs -n 1
+
+xargsinterpolate
+xargs interpolate string {}
+xargs -I '{}'
+
+tr
+replace a->b b->c
+tr 'ab' 'bc'
+
+trstretch
+replace one or more spaces with dash (using tr)
+tr -s ' ' '-'
+
+trdelete
+tr: delete a and b
+tr -d 'ab'
+
+trdeletecomplement
+tr: delete all except a and b
+tr -cd 'ab'
+
+trrange
+tr: replace lowercase with uppercase
+tr 'a-z' 'A-Z'
+
+bashu
+bash: fail on undefined variable
+set -u
+
+bashe
+bash: exit script on first error
+set -e
+
+bashx
+bash: print all commands
+set -x
+
+bashpipefail
+bash: use the return value of the last errored command in a pipe
+set -o pipefail

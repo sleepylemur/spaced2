@@ -1,0 +1,3 @@
+omit
+type helper to remove key a and b from object type T
+Omit<T, 'a' | 'b'>

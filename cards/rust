@@ -107,7 +107,7 @@ returns Some if exactly one of self, optb is Some, otherwise returns None
 xor(optb)
 
 optioninsert
-replace value in option with y and returns &mut y
+replace value in option with Some(y) and returns &mut y
 insert(y)
 
 optiongetorinsert
@@ -123,7 +123,7 @@ get the value out of the option, leaving a None in its place
 take()
 
 optionreplace
-replaces the actual value in the option with Some(y), returning the old value if present
+replaces value in option with Some(y) and returns old value if present
 replace(y)
 
 optionzip

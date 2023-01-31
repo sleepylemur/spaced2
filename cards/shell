@@ -81,3 +81,15 @@ cut -z
 cutsep
 cut replace - delimiter with _ and return first 3 fields
 cut -d '-' --output-delimiter '_' -f 1-3
+
+bashredirectstderr
+bash redirect stderr to file
+2>
+
+bashredirectboth
+bash redirect stderr to stdout
+2>&1
+
+sedcapture
+sed capture single char and surround with "
+sed 's/(.)/"\1"/'

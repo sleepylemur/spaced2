@@ -20,11 +20,11 @@ xargs -0
 
 xargsnumberofargs
 xargs use one param per input
-xargs -n 1
+xargs -n1
 
 xargsinterpolate
 xargs interpolate string {}
-xargs -I '{}'
+xargs -I{}
 
 tr
 replace a->b b->c
@@ -92,4 +92,4 @@ bash redirect stderr to stdout
 
 sedcapture
 sed capture single char and surround with "
-sed 's/(.)/"\1"/'
+sed 's/\(.\)/"\1"/'

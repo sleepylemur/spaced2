@@ -53,3 +53,11 @@ jq '{name: .a[1]}'
 jq_del
 remove 2nd element of x from {"a": {"x": [1,2,3]}} => {"a": {"x": [1,3]}}
 jq 'del(.a.x[1])'
+
+jq_compact
+jq one row per object
+jq -c
+
+jq_raw
+jq don't put quotes around output values
+jq -r

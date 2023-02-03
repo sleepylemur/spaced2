@@ -93,3 +93,31 @@ bash redirect stderr to stdout
 sedcapture
 sed capture single char and surround with "
 sed 's/\(.\)/"\1"/'
+
+agfilefilter
+ag flag for finding in files matching a pattern
+ag -G
+
+agfindfile
+ag match filename instead of contents
+ag -g
+
+agliteral
+ag find literal match, no regex
+ag -Q
+
+ageverything
+ag find in all files
+ag -u
+
+agnulls
+ag separate results with nulls
+ag -0
+
+aglinesafter
+ag specify lines after result
+ag -A
+
+aglinesbefore
+ag specify lines before result
+ag -B

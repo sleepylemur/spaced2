@@ -1,0 +1,23 @@
+rankovergroup
+rank grouped by a ordered by b
+rank() over (partition by a order by b)
+
+rank
+rank of current row with gaps
+rank()
+
+row_number
+number of current row
+row_number()
+
+dense_rank
+rank of current row without gaps
+dense_rank()
+
+lag
+window func: v evaluated for row i before current row default to d
+lag(v, i, d)
+
+lead
+window func: v evaluated for row i after current row default to d
+lead(v, i, d)

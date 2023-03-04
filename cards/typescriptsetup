@@ -1,0 +1,35 @@
+tsconfig
+name of typescript config file
+tsconfig.json
+
+tsconfig_include
+typescript config: use all .ts files in src
+"include": ["src/**/*.ts"]
+
+tsconfig_exclude
+typescript config: don't compile files in node_modules
+"exclude": ["node_modules"]
+
+tsconfig_extends
+typescript config: use base config for node 16
+"extends": "@tsconfig/node16/tsconfig.json"
+
+tsconfig_extends_install
+typescript setup: yarn install base typescript config for node 16
+yarn add --dev @tsconfig/node16
+
+tsconfig_outdir
+typescript config: specify destination folder as dist
+"compilerOptions": {"outDir": "dist"}
+
+types_node
+typescript setup: install node types
+yarn add --dev @types/node
+
+yarnglobalremove
+yarn uninstall global package a
+yarn global remove a
+
+yarnglobaladd
+yarn install package a globally
+yarn global add a

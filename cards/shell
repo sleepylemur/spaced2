@@ -6,6 +6,10 @@ finddir
 find all directories in current directory
 find . -type d
 
+lstime
+ls sort by updated at
+ls -t
+
 grepexclude
 grep for rows that don't include 'a'
 grep -v 'a'
@@ -25,6 +29,10 @@ xargs -n1
 xargsinterpolate
 xargs interpolate string {}
 xargs -I{}
+
+xargsmultiline
+xargs use 3 lines per call
+xargs -L3
 
 tr
 replace a->b b->c
@@ -121,3 +129,19 @@ ag -A
 aglinesbefore
 ag specify lines before result
 ag -B
+
+agcasesensitive
+ag case sensitive
+ag -s
+
+agfilenames
+ag only print names of files containing matches
+ag -l
+
+agmaxcount
+ag only show 2 matches per file
+ag -m 2
+
+agmatching
+ag only show matching portion of lines
+ag -o

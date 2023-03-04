@@ -2,3 +2,16 @@ head
 tail
 tar
 sed
+yarn add specific version
+yarn add dev various version qualifiers
+mikro-orm
+    initialize
+    query builder
+awk
+nodejs
+    writeFile
+    createServer
+    types of server handler
+    event signature for data
+    make request with options
+cors

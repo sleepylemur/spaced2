@@ -1,0 +1,16 @@
+bufferconcat
+combine buffer a and b
+Buffer.concat([a, b])
+
+bufferfrom
+turn string s into buffer
+Buffer.from(s)
+
+readfilepromise
+read a file f.txt into buffer b (promise)
+const b = await readFile('f.txt')
+
+readfilepromiseimport
+import method to read a file as a promise
+import { readFile } from 'node:fs/promises'
+

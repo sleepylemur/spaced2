@@ -149,3 +149,32 @@ transpose()
 optionflatten
 Option<Option<T>> => Option<T>
 flatten()
+
+rustup
+update rust toolchain
+rustup update
+
+cargonew
+make new binary app a
+cargo new --bin a
+
+hyperdep
+cargo.toml line for hyper
+hyper = { version = "0.14", features = ["full"] }
+
+tokiodep
+cargo.toml line for tokio
+tokio = { version = "1", features = ["full"] }
+
+tokiomain
+tokio main decorator
+#[tokio::main]
+
+socketaddr
+create address 127.0.0.1:3000
+SocketAddr::from(([127, 0, 0, 1], 3000));
+
+service_fn
+convert function f to hyper Service
+service_fn(f)
+

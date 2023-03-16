@@ -145,3 +145,11 @@ ag -m 2
 agmatching
 ag only show matching portion of lines
 ag -o
+
+tee
+send stdin to stdout and file a
+tee a
+
+bashpipeboth
+bash pipe stdout and stderr to next program
+|&

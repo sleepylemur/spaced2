@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     mem,
+    path::PathBuf,
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
@@ -24,13 +25,20 @@ impl Deck {
         self.cards.len()
     }
 
-    pub fn load(filename: &str) -> Result<Deck, Error> {
-        let mut cards: HashMap<String, Card> = Card::from_file(&format!("cards/{}", filename))?
+    pub fn load(base_path: &PathBuf, filename: &str) -> Result<Deck, Error> {
+        let mut card_path = base_path.clone();
+        card_path.push("cards");
+        card_path.push(filename);
+        let mut history_path = base_path.clone();
+        history_path.push("history");
+        history_path.push(filename);
+
+        let mut cards: HashMap<String, Card> = Card::from_file(&card_path)?
             .into_iter()
             .map(|card| (card.tag.clone(), card))
             .collect();
 
-        let mut history = History::open(&format!("history/{}", filename))?;
+        let mut history = History::open(&history_path)?;
         history.parse(&mut cards)?;
         Ok(Deck {
             current_tag: None,

@@ -1,6 +1,7 @@
 use std::io::{Stdin, Stdout};
+use std::path::PathBuf;
 
-use anyhow::{anyhow, Error};
+use anyhow::{anyhow, Context, Error};
 use crossterm::{
     cursor, execute,
     terminal::{Clear, ClearType},
@@ -92,8 +93,18 @@ enum QuizState {
     RetryWrongAnswer,
 }
 
-pub fn quiz(filename: &str, stdout: &mut Stdout, stdin: &Stdin) -> Result<(), Error> {
-    let mut deck = Deck::load(filename)?;
+pub fn quiz(
+    base_path: &PathBuf,
+    filename: &str,
+    stdout: &mut Stdout,
+    stdin: &Stdin,
+) -> Result<(), Error> {
+    println!(
+        "quiz filename {} base_path {}",
+        filename,
+        base_path.to_str().context("failed to convert base_path")?
+    );
+    let mut deck = Deck::load(&base_path, &filename)?;
 
     let mut state = QuizState::First;
 

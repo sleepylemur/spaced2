@@ -2,6 +2,7 @@ use std::{
     fs::File,
     io::{BufRead, BufReader, Error},
     iter::Peekable,
+    path::Path,
 };
 
 #[derive(Debug)]
@@ -33,9 +34,9 @@ where
 }
 
 impl Card {
-    pub fn from_file(filename: &str) -> Result<Vec<Card>, Error> {
+    pub fn from_file(path: &Path) -> Result<Vec<Card>, Error> {
         let mut cards = vec![];
-        let file = File::open(filename)?;
+        let file = File::open(path)?;
         let mut lines = BufReader::new(file).lines().peekable();
         skip_blank(&mut lines);
         while !lines.peek().is_none() {

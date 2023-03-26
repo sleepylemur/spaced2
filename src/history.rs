@@ -5,6 +5,7 @@ use std::{
     collections::HashMap,
     fs::{File, OpenOptions},
     io::{BufRead, BufReader, Write},
+    path::Path,
 };
 
 use crate::cards::Card;
@@ -15,12 +16,12 @@ pub struct History {
 }
 
 impl History {
-    pub fn open(filename: &str) -> Result<History, Error> {
+    pub fn open(path: &Path) -> Result<History, Error> {
         let file = OpenOptions::new()
             .read(true)
             .append(true)
             .create(true)
-            .open(filename)?;
+            .open(path)?;
         Ok(History { file, num: 0 })
     }
 

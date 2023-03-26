@@ -172,3 +172,13 @@
 1678685406381 jq_raw t
 1678685410088 jq_compact t
 1679460605519 jq_map_has t
+1679845089081 jq_keys t
+1679845105894 jq_unique_values_literal t
+1679845134364 jq_create t
+1679845147393 jq_array_key t
+1679845155139 jq_key_spaces t
+1679845172051 jq_max t
+1679845185567 jq_array_of_item t
+1679845210070 jq_range_end t
+1679845216796 jq_range f
+1679845222972 jq_range t

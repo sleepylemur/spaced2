@@ -6,7 +6,14 @@ use std::{
 };
 
 #[derive(Debug)]
+pub enum CardType {
+    Text,
+    Keys,
+}
+
+#[derive(Debug)]
 pub struct Card {
+    pub card_type: CardType,
     pub tag: String,
     pub question: String,
     pub answer: String,
@@ -40,8 +47,15 @@ impl Card {
         let mut lines = BufReader::new(file).lines().peekable();
         skip_blank(&mut lines);
         while !lines.peek().is_none() {
+            let tag_line = lines.next().unwrap().unwrap();
+            let mut tag_line_words = tag_line.split_whitespace();
+
             cards.push(Card {
-                tag: lines.next().unwrap().unwrap(),
+                tag: tag_line_words.next().unwrap().to_string(),
+                card_type: match tag_line_words.next().unwrap_or_default() {
+                    "keys" => CardType::Keys,
+                    _ => CardType::Text,
+                },
                 question: lines.next().unwrap().unwrap(),
                 answer: lines.next().unwrap().unwrap(),
                 num_correct: 0,

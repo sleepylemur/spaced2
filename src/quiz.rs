@@ -48,7 +48,7 @@ fn ask_question(stdin: &Stdin, deck: &mut Deck, last_correct: bool) -> Result<Qu
             if last_correct {
                 println!("correct");
             }
-            println!("{}", card.question);
+            println!("{} {:?}", card.question, card.card_type);
             let mut answer = String::new();
             stdin.read_line(&mut answer)?;
             if answer.len() == 0 {

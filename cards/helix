@@ -1,0 +1,955 @@
+move_char_left
+Move left
+h
+
+move_line_down keys
+Move down
+j
+
+move_line_up keys
+Move up
+k
+
+move_char_right keys
+Move right
+l
+
+move_next_word_start keys
+Move next word start
+w
+
+move_prev_word_start keys
+Move previous word start
+b
+
+move_next_word_end keys
+Move next word end
+e
+
+move_next_long_word_start keys
+Move next WORD start
+W
+
+move_prev_long_word_start keys
+Move previous WORD start
+B
+
+move_next_long_word_end keys
+Move next WORD end
+E
+
+find_till_char keys
+Find 'till next char
+t
+
+find_next_char keys
+Find next char
+f
+
+till_prev_char keys
+Find 'till previous char
+T
+
+find_prev_char keys
+Find previous char
+F
+
+goto_line keys
+Go to line number <n>
+G
+
+repeat_last_motion keys
+Repeat last motion (f, t or m)
+Alt-.
+
+goto_line_start keys
+Move to the start of the line
+Home
+
+goto_line_end keys
+Move to the end of the line
+End
+
+page_up keys
+Move page up
+Ctrl-b
+
+page_down keys
+Move page down
+Ctrl-f
+
+half_page_up keys
+Move half page up
+Ctrl-u
+
+half_page_down keys
+Move half page down
+Ctrl-d
+
+jump_forward keys
+Jump forward on the jumplist
+Ctrl-i
+
+jump_backward keys
+Jump backward on the jumplist
+Ctrl-o
+
+save_selection keys
+Save the current selection to the jumplist
+Ctrl-s
+
+replace keys
+Replace with a character
+r
+
+replace_with_yanked keys
+Replace with yanked text
+R
+
+switch_case keys
+Switch case of the selected text
+~
+
+switch_to_lowercase keys
+Set the selected text to lower case
+`
+
+switch_to_uppercase keys
+Set the selected text to upper case
+Alt-`
+
+insert_mode keys
+Insert before selection
+i
+
+append_mode keys
+Insert after selection (append)
+a
+
+insert_at_line_start keys
+Insert at the start of the line
+I
+
+insert_at_line_end keys
+Insert at the end of the line
+A
+
+open_below keys
+Open new line below selection
+o
+
+open_above keys
+Open new line above selection
+O
+
+repeat_last_insert keys
+Repeat last insert
+.
+
+undo keys
+Undo change
+u
+
+redo keys
+Redo change
+U
+
+earlier keys
+Move backward in history
+Alt-u
+
+later keys
+Move forward in history
+Alt-U
+
+yank keys
+Yank selection
+y
+
+paste_after keys
+Paste after selection
+p
+
+paste_before keys
+Paste before selection
+P
+
+select_register keys
+Select register a to yank to or paste from
+"a
+
+indent keys
+Indent selection
+>
+
+unindent keys
+Unindent selection
+<
+
+delete_selection keys
+Delete selection
+d
+
+delete_selection_noyank keys
+Delete selection, without yanking
+Alt-d
+
+change_selection keys
+Change selection (delete and enter insert mode)
+c
+
+change_selection_noyank keys
+Change selection (delete and enter insert mode, without yanking)
+Alt-c
+
+increment keys
+Increment object (number) under cursor
+Ctrl-a
+
+decrement keys
+Decrement object (number) under cursor
+Ctrl-x
+
+record_macro keys
+Start/stop macro recording to the selected register (experimental)
+Q
+
+replay_macro keys
+Play back a recorded macro from the selected register (experimental)
+q
+
+shell_pipe keys
+Pipe each selection through shell command, replacing with output
+|
+
+shell_pipe_to keys
+Pipe each selection into shell command, ignoring output
+Alt-|
+
+shell_insert_output keys
+Run shell command, inserting output before each selection
+!
+
+shell_append_output keys
+Run shell command, appending output after each selection
+Alt-!
+
+shell_keep_pipe keys
+Pipe each selection into shell command, keep selections where command returned 0
+$
+
+select_regex keys
+Select all regex matches inside selections
+s
+
+split_selection keys
+Split selection into sub selections on regex matches
+S
+
+split_selection_on_newline keys
+Split selection on newlines
+Alt-s
+
+merge_consecutive_selections keys
+Merge consecutive selections
+Alt-_
+
+align_selections keys
+Align selection in columns
+&
+
+trim_selections keys
+Trim whitespace from the selection
+_
+
+collapse_selection keys
+Collapse selection onto a single cursor
+;
+
+flip_selections keys
+Flip selection cursor and anchor
+Alt-;
+
+ensure_selections_forward keys
+Ensures the selection is in forward direction
+Alt-:
+
+keep_primary_selection keys
+Keep only the primary selection
+,
+
+remove_primary_selection keys
+Remove the primary selection
+Alt-,
+
+copy_selection_on_next_line keys
+Copy selection onto the next line (Add cursor below)
+C
+
+copy_selection_on_prev_line keys
+Copy selection onto the previous line (Add cursor above)
+Alt-C
+
+rotate_selections_backward keys
+Rotate main selection backward
+(
+
+rotate_selections_forward keys
+Rotate main selection forward
+)
+
+rotate_selection_contents_backward keys
+Rotate selection contents backward
+Alt-(
+
+rotate_selection_contents_forward keys
+Rotate selection contents forward
+Alt-)
+
+select_all keys
+Select entire file
+%
+
+extend_line_below keys
+Select current line, if already selected, extend to next line
+x
+
+extend_to_line_bounds keys
+Extend selection to line bounds (line-wise selection)
+X
+
+shrink_to_line_bounds keys
+Shrink selection to line bounds (line-wise selection)
+Alt-x
+
+join_selections keys
+Join lines inside selection
+J
+
+join_selections_space keys
+Join lines inside selection and select the inserted space
+Alt-J
+
+keep_selections keys
+Keep selections matching the regex
+K
+
+remove_selections keys
+Remove selections matching the regex
+Alt-K
+
+toggle_comments keys
+Comment/uncomment the selections
+Ctrl-c
+
+expand_selection keys
+Expand selection to parent syntax node (TS)
+Alt-o
+
+shrink_selection keys
+Shrink syntax tree object selection (TS)
+Alt-i
+
+select_prev_sibling keys
+Select previous sibling node in syntax tree (TS)
+Alt-p
+
+select_next_sibling keys
+Select next sibling node in syntax tree (TS)
+Alt-n
+
+search keys
+Search for regex pattern
+/
+
+rsearch keys
+Search for previous pattern
+?
+
+search_next keys
+Select next search match
+n
+
+search_prev keys
+Select previous search match
+N
+
+search_selection keys
+Use current selection as the search pattern
+*
+
+select_mode keys
+Enter select (extend) mode
+v
+
+enter_goto_mode keys
+Enter goto mode
+g
+
+enter_match_mode keys
+Enter match mode
+m
+
+command_mode keys
+Enter command mode
+:
+
+enter_view_mode keys
+Enter view mode
+z
+
+enter_sticky_view_mode keys
+Enter sticky view mode
+Z
+
+enter_window_mode keys
+Enter window mode
+Ctrl-w
+
+enter_space_mode keys
+Enter space mode
+Space
+
+align_view_center keys
+(View mode) Vertically center the line
+z
+
+align_view_top keys
+(View mode) Align the line to the top of the screen
+t
+
+align_view_bottom keys
+(View mode) Align the line to the bottom of the screen
+b
+
+align_view_middle keys
+(View mode) Align the line to the middle of the screen (horizontally)
+m
+
+scroll_down keys
+(View mode) Scroll the view downwards
+j
+
+scroll_up keys
+(View mode) Scroll the view upwards
+k
+
+page_down keys
+(View mode) Move page down
+Ctrl-f
+
+page_up keys
+(View mode) Move page up
+Ctrl-b
+
+half_page_down keys
+(View mode) Move half page down
+Ctrl-d
+
+half_page_up keys
+(View mode) Move half page up
+Ctrl-u
+
+goto_file_start keys
+Go to start of file
+gg
+
+goto_last_line keys
+Go to the end of the file
+ge
+
+goto_file keys
+Go to files in the selection
+gf
+
+goto_line_start keys
+Go to the start of the line
+gh
+
+goto_line_end keys
+Go to the end of the line
+gl
+
+goto_first_nonwhitespace keys
+Go to first non-whitespace character of the line
+gs
+
+goto_window_top keys
+Go to the top of the screen
+gt
+
+goto_window_center keys
+Go to the middle of the screen
+gc
+
+goto_window_bottom keys
+Go to the bottom of the screen
+gb
+
+goto_definition keys
+Go to definition (LSP)
+gd
+
+goto_type_definition keys
+Go to type definition (LSP)
+gy
+
+goto_reference keys
+Go to references (LSP)
+gr
+
+goto_implementation keys
+Go to implementation (LSP)
+gi
+
+goto_last_accessed_file keys
+Go to the last accessed/alternate file
+ga
+
+goto_last_modified_file keys
+Go to the last modified/alternate file
+gm
+
+goto_next_buffer keys
+Go to next buffer
+gn
+
+goto_previous_buffer keys
+Go to previous buffer
+gp
+
+goto_last_modification keys
+Go to last modification in current file
+g.
+
+match_brackets keys
+Goto matching bracket (TS)
+mm
+
+surround_add keys
+Surround current selection with '
+ms'
+
+surround_replace keys
+Replace surround character ( with [
+mr([
+
+surround_delete keys
+Delete surround character '
+md'
+
+select_textobject_around keys
+Select around word
+maw
+
+select_textobject_inner keys
+Select inside word
+miw
+
+rotate_view keys
+(Window mode) Switch to next window
+w
+
+vsplit keys
+(Window mode) Vertical right split
+v
+
+hsplit keys
+(Window mode) Horizontal bottom split
+s
+
+goto_file keys
+(Window mode) Go to files in the selection in horizontal splits
+f
+
+goto_file keys
+(Window mode) Go to files in the selection in vertical splits
+F
+
+jump_view_left keys
+(Window mode) Move to left split
+h
+
+jump_view_down keys
+(Window mode) Move to split below
+j
+
+jump_view_up keys
+(Window mode) Move to split above
+k
+
+jump_view_right keys
+(Window mode) Move to right split
+l
+
+wclose keys
+(Window mode) Close current window
+q
+
+wonly keys
+(Window mode) Only keep the current window, closing all the others
+o
+
+swap_view_left keys
+(Window mode) Swap window to the left
+H
+
+swap_view_down keys
+(Window mode) Swap window downwards
+J
+
+swap_view_up keys
+(Window mode) Swap window upwards
+K
+
+swap_view_right keys
+(Window mode) Swap window to the right
+L
+
+file_picker keys
+(Space mode) Open file picker
+f
+
+file_picker_in_current_directory keys
+(Space mode) Open file picker at current working directory
+F
+
+buffer_picker keys
+(Space mode) Open buffer picker
+b
+
+jumplist_picker keys
+(Space mode) Open jumplist picker
+j
+
+hover keys
+(Space mode) Show documentation for item under cursor in a popup (LSP)
+k
+
+symbol_picker keys
+(Space mode) Open document symbol picker (LSP)
+s
+
+workspace_symbol_picker keys
+(Space mode) Open workspace symbol picker (LSP)
+S
+
+diagnostics_picker keys
+(Space mode) Open document diagnostics picker (LSP)
+d
+
+workspace_diagnostics_picker keys
+(Space mode) Open workspace diagnostics picker (LSP)
+D
+
+rename_symbol keys
+(Space mode) Rename symbol (LSP)
+r
+
+code_action keys
+(Space mode) Apply code action (LSP)
+a
+
+select_references_to_symbol_under_cursor keys
+(Space mode) Select symbol references (LSP)
+h
+
+last_picker keys
+(Space mode) Open last fuzzy picker
+'
+
+enter_window_mode keys
+(Space mode) Enter window mode
+w
+
+paste_clipboard_after keys
+(Space mode) Paste system clipboard after selections
+p
+
+paste_clipboard_before keys
+(Space mode) Paste system clipboard before selections
+P
+
+yank_joined_to_clipboard keys
+(Space mode) Join and yank selections to clipboard
+y
+
+yank_main_selection_to_clipboard keys
+(Space mode) Yank main selection to clipboard
+Y
+
+replace_selections_with_clipboard keys
+(Space mode) Replace selections by clipboard contents
+R
+
+global_search keys
+(Space mode) Global search in workspace folder
+/
+
+command_palette keys
+(Space mode) Open command palette
+?
+
+scroll_up keys
+(Popup) Scroll up
+Ctrl-u
+
+scroll_down keys
+(Popup) Scroll down
+Ctrl-d
+
+goto_next_diag keys
+Go to next diagnostic (LSP)
+]d
+
+goto_prev_diag keys
+Go to previous diagnostic (LSP)
+[d
+
+goto_last_diag keys
+Go to last diagnostic in document (LSP)
+]D
+
+goto_first_diag keys
+Go to first diagnostic in document (LSP)
+[D
+
+goto_next_function keys
+Go to next function (TS)
+]f
+
+goto_prev_function keys
+Go to previous function (TS)
+[f
+
+goto_next_class keys
+Go to next type definition (TS)
+]t
+
+goto_prev_class keys
+Go to previous type definition (TS)
+[t
+
+goto_next_parameter keys
+Go to next argument/parameter (TS)
+]a
+
+goto_prev_parameter keys
+Go to previous argument/parameter (TS)
+[a
+
+goto_next_comment keys
+Go to next comment (TS)
+]c
+
+goto_prev_comment keys
+Go to previous comment (TS)
+[c
+
+goto_next_test keys
+Go to next test (TS)
+]T
+
+goto_prev_test keys
+Go to previous test (TS)
+[T
+
+goto_next_paragraph keys
+Go to next paragraph
+]p
+
+goto_prev_paragraph keys
+Go to previous paragraph
+[p
+
+goto_next_change keys
+Go to next change
+]g
+
+goto_prev_change keys
+Go to previous change
+[g
+
+goto_last_change keys
+Go to last change
+]G
+
+goto_first_change keys
+Go to first change
+[G
+
+add_newline_below keys
+Add newline below
+]Space
+
+add_newline_above keys
+Add newline above
+[Space
+
+normal_mode keys
+(Insert mode) Switch to normal mode
+Escape
+
+commit_undo_checkpoint keys
+(Insert mode) Commit undo checkpoint
+Ctrl-s
+
+completion keys
+(Insert mode) Autocomplete
+Ctrl-x
+
+insert_register keys
+(Insert mode) Insert a register content
+Ctrl-r
+
+delete_word_backward keys
+(Insert mode) Delete previous word
+Ctrl-w
+
+delete_word_forward keys
+(Insert mode) Delete next word
+Alt-d
+
+kill_to_line_start keys
+(Insert mode) Delete to start of line
+Ctrl-u
+
+kill_to_line_end keys
+(Insert mode) Delete to end of line
+Ctrl-k
+
+delete_char_backward keys
+(Insert mode) Delete previous char
+Ctrl-h
+
+delete_char_forward keys
+(Insert mode) Delete next char
+Ctrl-d
+
+insert_newline keys
+(Insert mode) Insert new line
+Ctrl-j
+
+previous_entry keys
+(Picker) Previous entry
+Shift-Tab
+
+next_entry keys
+(Picker) Next entry
+Tab
+
+page_up keys
+(Picker) Page up
+Ctrl-u
+
+page_down keys
+(Picker) Page down
+Ctrl-d
+
+go_to_first_entry keys
+(Picker) Go to first entry
+Home
+
+go_to_last_entry keys
+(Picker) Go to last entry
+End
+
+open_selected keys
+(Picker) Open selected
+Enter
+
+open_horizontally keys
+(Picker) Open horizontally
+Ctrl-s
+
+open_vertically keys
+(Picker) Open vertically
+Ctrl-v
+
+toggle_preview keys
+(Picker) Toggle preview
+Ctrl-t
+
+close_picker keys
+(Picker) Close picker
+Escape
+
+close_prompt keys
+(Prompt) Close prompt
+Escape
+
+backward_a_word keys
+(Prompt) Backward a word
+Alt-b
+
+backward_a_char keys
+(Prompt) Backward a char
+Ctrl-b
+
+forward_a_word keys
+(Prompt) Forward a word
+Alt-f
+
+forward_a_char keys
+(Prompt) Forward a char
+Ctrl-f
+
+move_prompt_end keys
+(Prompt) Move prompt end
+Ctrl-e
+
+move_prompt_start keys
+(Prompt) Move prompt start
+Ctrl-a
+
+delete_previous_word keys
+(Prompt) Delete previous word
+Ctrl-w
+
+delete_next_word keys
+(Prompt) Delete next word
+Alt-d
+
+delete_to_start_of_line keys
+(Prompt) Delete to start of line
+Ctrl-u
+
+delete_to_end_of_line keys
+(Prompt) Delete to end of line
+Ctrl-k
+
+delete_previous_char keys
+(Prompt) Delete previous char
+Backspace
+
+delete_next_char keys
+(Prompt) Delete next char
+Ctrl-d
+
+insert_a_word_under_doc_cursor keys
+(Prompt) Insert a word under doc cursor, may be changed to Ctrl-r Ctrl-w later
+Ctrl-s
+
+select-previous_history keys
+(Prompt) Select previous history
+Ctrl-p
+
+select_next_history keys
+(Prompt) Select next history
+Ctrl-n
+
+insert_the_content_of_the_register_selected_by_following_input_char keys
+(Prompt) Insert the content of the register selected by following input char
+Ctrl-r
+
+select_next_completion_item keys
+(Prompt) Select next completion item
+Tab
+
+select_previous_completion_item keys
+(Prompt) Select previous completion item
+BackTab
+
+open_selected keys
+(Prompt) Open selected
+Enter

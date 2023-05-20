@@ -1,0 +1,99 @@
+down
+Move the line down
+option down
+
+up
+move the line up
+option up
+
+copy down
+copy the line down
+option shift down
+
+copy up
+copy the line up
+option shift up
+
+delete line
+delete the line
+shift command K
+
+insert line above
+insert a line above
+command enter
+
+insert line below
+insert a line below
+shift command enter
+
+indent
+indent the line
+tab
+
+unindent
+unindent the line
+shift tab
+
+beginning
+move to the beginning of the file
+command up
+
+end
+move to the end of the file
+command down
+
+line comment
+toggle line comment
+command /
+
+block comment
+toggle block comment
+option shift a
+
+go to next error
+go to the next error
+f8
+
+go to previous error
+go to the previous error
+shift f8
+
+go back
+go back
+control -
+
+go forward
+go forward
+control shift -
+
+go to symbol
+go to symbol
+command shift o
+
+go to file
+go to file
+command p
+
+go to line
+go to line
+control g
+
+go to definition
+go to definition
+f12
+
+quick fix
+quick fix
+command .
+
+rename symbol
+rename symbol
+f2
+
+format document
+format document
+option shift f
+
+check function parameters
+check function parameters
+command k command i

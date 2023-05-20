@@ -1,0 +1,8 @@
+kube_nsenter
+enter the kubernetes container my-app with sh shell
+kubectl exec my-app -it -- sh
+
+kube_get_pods
+list the current kube pods
+kubectl get pods
+
